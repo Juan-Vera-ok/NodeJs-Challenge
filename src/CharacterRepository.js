@@ -2,7 +2,7 @@ const characters={};
 var nextId=1;
 export default class CharacterRepository {
 
-    insert(options){
+    create(options){
         const id=nextId;
         const character={...options, id};
         characters[id]=character;
@@ -25,6 +25,5 @@ export default class CharacterRepository {
     find(id){
         return characters[id]
     }
-
 }
 

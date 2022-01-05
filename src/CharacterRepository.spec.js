@@ -6,8 +6,8 @@ const name="Ricardo";
 const age= 27;
 const weight = 67;
 const bio = "Hola soy Ricardo";
-const character = repo.insert({name,age,weight,bio});
-const character2 = repo.insert({name,age,weight,bio});
+const character = repo.create({name,age,weight,bio});
+const character2 = repo.create({name,age,weight,bio});
 
 assert.deepEqual(repo.list(),{[character.id]:character,[character2.id]:character2});
 
