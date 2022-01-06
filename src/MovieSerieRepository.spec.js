@@ -15,8 +15,10 @@ const insertedMovieSerie = repo.find(movieSerie1.id)
 
 assert.deepEqual(insertedMovieSerie,{name,date,id:movieSerie1.id});
 
-const updatedMovieSerie=repo.update(movieSerie1.id,{name:"Spiderman 2",date:"16 de mayo 2004"})
+repo.update(movieSerie1.id,{name:"Spiderman 2",date:"16 de mayo 2004"})
 
-assert.deepEqual(updatedMovieSerie,{name:"Spiderman 2",date:"16 de mayo 2004",id:updatedMovieSerie.id});
+assert.deepEqual(repo.find(movieSerie1.id),{name:"Spiderman 2",date:"16 de mayo 2004",id:movieSerie1.id});
+
+repo.delete(movieSerie2.id)
 
 assert.deepEqual(repo.list(),{[movieSerie1.id]:repo.find(movieSerie1.id),[movieSerie3.id]:repo.find(movieSerie3.id)});

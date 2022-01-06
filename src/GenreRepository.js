@@ -1,14 +1,13 @@
 const genre= {}
-const nextId= 1;
+let nextId= 1;
 
 export default class GenreRepository{
     
     create(options){
         const id=nextId;
-        newGenre={...options,id};
-        genre[id]=newGenere;
+        genre[id]={...options,id};
         nextId++;
-        return newGenre
+        return genre[id];
     }
 
     delete(id){

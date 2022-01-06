@@ -17,8 +17,7 @@ export default class MovieSerieRepository{
 
     update(id,options){
         MovieSerie[id]={...MovieSerie[id],...options}
-        return MovieSerie[id];
-    }
+        }
 
     list(){
         return MovieSerie;
