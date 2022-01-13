@@ -1,10 +1,20 @@
+import MovieParticipationRepository from "./MovieParticipationRepository.js";
+
 const characters={};
 var nextId=1;
 export default class CharacterRepository {
 
-    create(options){
+    constructor (){
+        this.participationRepo = new MovieParticipationRepository()
+    }
+    create({movieIds,...options}){
+        
         const id=nextId;
         const character={...options, id};
+
+        movieIds.forEach(movieId=>this.participationRepo.insert({
+            characterId:id, movieId}));
+
         characters[id]=character;
         nextId++;
         return character;

@@ -16,8 +16,24 @@ export default class MovieParticipationRepository{
 
     find(id){
         const arrayMovieParticipation= Object.values(movieParticipation);
-        const filterArray = arrayMovieParticipation.filter(function(currentId){
-            return (currentId.id===id);
+        const filterArray = arrayMovieParticipation.filter(function(participation){
+            return (participation.id===id);
+        });
+        return filterArray;
+    }
+
+    findByCharacterId(id){
+        const arrayMovieParticipation= Object.values(movieParticipation);
+        const filterArray = arrayMovieParticipation.filter(function(participation){
+            return (participation.characterId===id);
+        });
+        return filterArray;
+    }
+
+    findByMovieId(id){
+        const arrayMovieParticipation= Object.values(movieParticipation);
+        const filterArray = arrayMovieParticipation.filter(function(participation){
+            return (participation.movieId===id);
         });
         return filterArray;
     }
