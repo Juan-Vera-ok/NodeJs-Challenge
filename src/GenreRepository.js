@@ -1,10 +1,20 @@
+import GenreMovieAssociationRepository from "./GenreMovieAssociationRepository.js";
 const genre= {}
 let nextId= 1;
 
 export default class GenreRepository{
     
-    create(options){
+    constructor(){
+        this.genreMovieAssociationRepo= new GenreMovieAssociationRepository();
+    }
+
+    create({movieIds,...options}){
         const id=nextId;
+
+        movieIds.forEach(movieId => {this.genreMovieAssociationRepo.insert(
+            {genreId:id,movieId});
+        });
+
         genre[id]={...options,id};
         nextId++;
         return genre[id];

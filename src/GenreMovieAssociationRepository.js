@@ -14,6 +14,10 @@ export default class GenreMovieAssociationRepository{
         delete genreMovieAssociation[id];
     }
 
+    list(){
+        return genreMovieAssociation;
+    }
+
     find(id){
         const arrayGenreMovieAssociation=Object.values(genreMovieAssociation)
         const filterArray = arrayGenreMovieAssociation.filter(function(association){
@@ -23,17 +27,17 @@ export default class GenreMovieAssociationRepository{
     }
 
     findByGenre(idGenre){
-        arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
-        filterArray = arrayGenreMovieAssociation.filter(function(association){
-            return (association.id===id);
+        const arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
+        const filterArray = arrayGenreMovieAssociation.filter(function(association){
+            return (association.genreId===idGenre);
         })
         return filterArray;
     }
 
     findByMovie(idMovie){
-        arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
-        filterArray = arrayGenreMovieAssociation.filter(function(association){
-            return (association.id===id);
+        const arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
+        const filterArray = arrayGenreMovieAssociation.filter(function(association){
+            return (association.movieId===idMovie);
         })
         return filterArray;
     }
