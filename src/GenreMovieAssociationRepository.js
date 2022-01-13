@@ -1,7 +1,7 @@
 const genreMovieAssociation = {};
 let nextId=1;
 
-export default class genreMovieAssociation{
+export default class GenreMovieAssociationRepository{
     insert(options){
         const id=nextId;
         const newAssociation={...options,id};
@@ -15,9 +15,9 @@ export default class genreMovieAssociation{
     }
 
     find(id){
-        arrayGenreMovieAssociation=Object.values(genreMovieAssociation)
-        filterArray = arrayGenreMovieAssociation.filter(function(association){
-            return (association===id);
+        const arrayGenreMovieAssociation=Object.values(genreMovieAssociation)
+        const filterArray = arrayGenreMovieAssociation.filter(function(association){
+            return (association.id===id);
         })
         return filterArray;
     }
@@ -25,7 +25,7 @@ export default class genreMovieAssociation{
     findByGenre(idGenre){
         arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
         filterArray = arrayGenreMovieAssociation.filter(function(association){
-            return (association===id);
+            return (association.id===id);
         })
         return filterArray;
     }
@@ -33,7 +33,7 @@ export default class genreMovieAssociation{
     findByMovie(idMovie){
         arrayGenreMovieAssociation=Object.values(genreMovieAssociation);
         filterArray = arrayGenreMovieAssociation.filter(function(association){
-            return (association===id);
+            return (association.id===id);
         })
         return filterArray;
     }
