@@ -29,6 +29,12 @@ assert.deepEqual(participationRepo.findByMovieId(3),([
 
 const associationGenreMovieRepo= new GenreMovieAssociationRepository();
 
+assert.deepEqual(associationGenreMovieRepo.findByGenre(2),([
+  {genreId: 2,id: 4,movieId: 1},
+  {genreId: 2,id: 5,movieId: 2},
+  {genreId: 2,id: 6,movieId: 3}
+]))
+
 repo.update(movieSerie1.id,{name:"Spiderman 2",date:"16 de mayo 2004"})
 
 assert.deepEqual(repo.find(movieSerie1.id),{name:"Spiderman 2",date:"16 de mayo 2004",id:movieSerie1.id});
