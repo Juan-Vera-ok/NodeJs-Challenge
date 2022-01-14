@@ -7,9 +7,10 @@ const repo = new MovieSerieRepository();
 const name = "Friends";
 const date ="1 de enero";
 const characterIds = [1,2,3]
-const movieSerie1= repo.create({name,date,characterIds});
-const movieSerie2= repo.create({name,date,characterIds});
-const movieSerie3= repo.create({name,date,characterIds});
+const genreIds = [1,2,3]
+const movieSerie1= repo.create({name,date,characterIds,genreIds});
+const movieSerie2= repo.create({name,date,characterIds,genreIds});
+const movieSerie3= repo.create({name,date,characterIds,genreIds});
 
 assert.deepEqual(repo.list(),{[movieSerie1.id]: movieSerie1,[movieSerie2.id]:movieSerie2,[movieSerie3.id]:movieSerie3})
 
@@ -19,7 +20,11 @@ assert.deepEqual(insertedMovieSerie,{name,date,id:movieSerie1.id});
 
 const participationRepo = new MovieParticipationRepository();
 
-participationRepo.findByMovieId(3)
+assert.deepEqual(participationRepo.findByMovieId(3),([
+  { characterId: 1, movieId: 3, id: 3 },
+  { characterId: 2, movieId: 3, id: 6 },
+  { characterId: 3, movieId: 3, id: 7 }
+  ]))
 
 repo.update(movieSerie1.id,{name:"Spiderman 2",date:"16 de mayo 2004"})
 

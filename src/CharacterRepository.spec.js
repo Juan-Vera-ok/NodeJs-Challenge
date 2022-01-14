@@ -20,7 +20,6 @@ assert.deepEqual(insertedCharacter,{name, age, weight,bio,id:character.id});
 const participationRepo = new MovieParticipationRepository();
 
 participationRepo.findByCharacterId(2)
-
 repo.update(character.id,{name:"Lampone",age:40,bio:"Hola soy Lampone"})
 
 assert.deepEqual

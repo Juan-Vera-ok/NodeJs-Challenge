@@ -4,10 +4,30 @@ let nextId=1;
 export default class MovieParticipationRepository{
 
     insert(options){
-        const id=nextId;
-        movieParticipation[id]={...options,id}
-        nextId++;
-        return movieParticipation[id]
+        if(this.itsRepetead(options).flag===false)
+        {
+            const id=nextId;
+            movieParticipation[id]={...options,id}
+            nextId++;
+            return movieParticipation[id]
+        }else{
+            return (this.itsRepetead(options).repetead)
+        }
+    }
+
+    itsRepetead(options){
+        let repetead;
+        const arrayMovieParticipation = Object.values(movieParticipation);
+        const flag = arrayMovieParticipation.some(participation=>{
+            if(participation.movieId===options.movieId 
+            && participation.characterId===options.characterId){
+                repetead=participation
+            }
+            return (participation.movieId===options.movieId 
+            && participation.characterId===options.characterId)
+        })
+        const repeteadParticipation={flag:flag,repetead}
+        return repeteadParticipation;
     }
 
     delete(id){
@@ -36,6 +56,10 @@ export default class MovieParticipationRepository{
             return (participation.movieId===id);
         });
         return filterArray;
+    }
+
+    list(){
+        return movieParticipation;
     }
 
 }
