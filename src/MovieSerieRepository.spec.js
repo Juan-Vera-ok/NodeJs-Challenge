@@ -1,6 +1,7 @@
 import MovieSerieRepository from "./MovieSerieRepository.js";
 import {strict as assert} from 'assert';
 import MovieParticipationRepository from "./MovieParticipationRepository.js";
+import GenreMovieAssociationRepository from "./GenreMovieAssociationRepository.js";
 
 const repo = new MovieSerieRepository();
 
@@ -25,6 +26,8 @@ assert.deepEqual(participationRepo.findByMovieId(3),([
   { characterId: 2, movieId: 3, id: 6 },
   { characterId: 3, movieId: 3, id: 7 }
   ]))
+
+const associationGenreMovieRepo= new GenreMovieAssociationRepository();
 
 repo.update(movieSerie1.id,{name:"Spiderman 2",date:"16 de mayo 2004"})
 
