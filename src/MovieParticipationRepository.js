@@ -4,7 +4,7 @@ let nextId=1;
 export default class MovieParticipationRepository{
 
     insert(options){
-        if(this.itsRepetead(options).flag===false)
+        if(this.isRepeatead(options).flag===false)
         {
             const id=nextId;
             movieParticipation[id]={...options,id}
@@ -15,7 +15,7 @@ export default class MovieParticipationRepository{
         }
     }
 
-    itsRepetead(options){
+    isRepeatead(options){
         let repetead;
         const arrayMovieParticipation = Object.values(movieParticipation);
         const flag = arrayMovieParticipation.some(participation=>{

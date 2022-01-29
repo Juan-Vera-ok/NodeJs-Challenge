@@ -3,7 +3,7 @@ let nextId=1;
 
 export default class GenreMovieAssociationRepository{
     insert(options){
-        if(this.itsRepetead(options).flag===false){
+        if(this.isRepeatead(options).flag===false){
         const id=nextId;
         const newAssociation={...options,id};
         genreMovieAssociation[id] = newAssociation;
@@ -15,7 +15,7 @@ export default class GenreMovieAssociationRepository{
         
     }
 
-    itsRepetead(options){
+    isRepeatead(options){
         let repetead
         const arrayGenreMovieAssociation= Object.values(genreMovieAssociation);
         const flag = arrayGenreMovieAssociation.some(association=>{
