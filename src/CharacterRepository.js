@@ -24,8 +24,11 @@ export default class CharacterRepository {
         delete characters[id];
     }
 
-    update(id,options){
+    update(id,{movieIds,...options}){
         characters[id]={...characters[id],...options};
+        if(movieIds!==undefined){
+        this.participationRepo.deleteWhereCharacterIdEquals(id);
+        movieIds.forEach(movieId=>{this.participationRepo.insert({characterId:id, movieId})});}
     }
 
     list(){

@@ -4,30 +4,30 @@ let nextId=1;
 export default class MovieParticipationRepository{
 
     insert(options){
-        if(this.isRepeatead(options).flag===false)
+        if(this.isRepeated(options).flag===false)
         {
             const id=nextId;
             movieParticipation[id]={...options,id}
             nextId++;
             return movieParticipation[id]
         }else{
-            return (this.itsRepetead(options).repetead)
+            return (this.isRepeated(options).repeated)
         }
     }
 
-    isRepeatead(options){
-        let repetead;
+    isRepeated(options){
+        let repeated;
         const arrayMovieParticipation = Object.values(movieParticipation);
         const flag = arrayMovieParticipation.some(participation=>{
             if(participation.movieId===options.movieId 
             && participation.characterId===options.characterId){
-                repetead=participation
+                repeated=participation
             }
             return (participation.movieId===options.movieId 
             && participation.characterId===options.characterId)
         })
-        const repeteadParticipation={flag:flag,repetead}
-        return repeteadParticipation;
+        const repeatedParticipation={flag:flag,repeated}
+        return repeatedParticipation;
     }
 
     delete(id){
@@ -61,5 +61,11 @@ export default class MovieParticipationRepository{
     list(){
         return movieParticipation;
     }
+
+    deleteWhereCharacterIdEquals(characterId){
+        const filterArray = this.findByCharacterId(characterId);
+        filterArray.forEach(idFilter=>{delete movieParticipation[idFilter.id]});
+    }
+
 
 }

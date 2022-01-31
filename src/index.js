@@ -26,4 +26,9 @@ app.get('/characters',function(req,res){
     res.json(repo.list());
 })
 
+//DELETE delete character
+app.delete('/character/:',function(req,res){
+    res.json(repo.delete(req.body.id));
+})
+
 app.listen(3000)
