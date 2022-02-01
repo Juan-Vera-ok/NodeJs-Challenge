@@ -8,10 +8,10 @@ const repo = new MovieSerieRepository();
 const name = "Friends";
 const date ="1 de enero";
 const characterIds = [1,2,3]
-const genreIds = [1,2,3]
-const movieSerie1= repo.create({name,date,characterIds,genreIds});
-const movieSerie2= repo.create({name,date,characterIds,genreIds});
-const movieSerie3= repo.create({name,date,characterIds,genreIds});
+const genreNames = ["Ciencia ficción","Drama","Comedia"]
+const movieSerie1= repo.create({name,date,characterIds,genreNames});
+const movieSerie2= repo.create({name,date,characterIds,genreNames});
+const movieSerie3= repo.create({name,date,characterIds,genreNames});
 
 assert.deepEqual(repo.list(),{[movieSerie1.id]: movieSerie1,[movieSerie2.id]:movieSerie2,[movieSerie3.id]:movieSerie3})
 

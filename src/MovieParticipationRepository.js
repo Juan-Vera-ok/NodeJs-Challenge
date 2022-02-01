@@ -67,5 +67,9 @@ export default class MovieParticipationRepository{
         filterArray.forEach(idFilter=>{delete movieParticipation[idFilter.id]});
     }
 
+    deleteWhereMovieIdEquals(movieId){
+        const filterArray=this.findByMovieId(movieId);
+        filterArray.forEach(idFilter=>{delete movieParticipation[idFilter.id]});
+    }
 
 }

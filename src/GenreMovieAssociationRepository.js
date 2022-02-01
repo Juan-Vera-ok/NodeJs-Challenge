@@ -61,4 +61,9 @@ export default class GenreMovieAssociationRepository{
         })
         return filterArray;
     }
+
+    deleteWhereMovieIdEquals(movieId){
+        const filterArray=this.findByMovie(movieId);
+        filterArray.forEach(idFilter=>{delete genreMovieAssociation[idFilter.id]});
+    }
 }
