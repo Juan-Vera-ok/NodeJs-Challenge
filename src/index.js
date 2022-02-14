@@ -62,6 +62,11 @@ app.get('/movies',function(req,res){
 app.delete('/movie/:',function(req,res){
     res.json(repoMovie.delete(req.body.id))
 })
+//TODO: Remover endpoints de generos
+//GET genres create
+app.post('/genre',async function(req,res){
+    res.json(await repoGenre.create(req.body))
+})
 
 //GET genres list
 app.get('/genres',function(req,res){

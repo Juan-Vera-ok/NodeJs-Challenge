@@ -1,6 +1,5 @@
 import GenreMovieAssociationRepository from "./GenreMovieAssociationRepository.js";
-const genres= {}
-let nextId= 1;
+import db from "../db/models/index.cjs" 
 
 export default class GenreRepository{
     
@@ -8,16 +7,13 @@ export default class GenreRepository{
         this.genreMovieAssociationRepo= new GenreMovieAssociationRepository();
     }
 
-    create({movieIds,...options}){
-        const id=nextId;
+    async create({movieIds,name}){
+        const genre =await db.Genre.create({name});
         if(movieIds!==undefined){
-        movieIds.forEach(movieId => {this.genreMovieAssociationRepo.insert(
-            {genreId:id,movieId});
-        });}
-
-        genres[id]={...options,id};
-        nextId++;
-        return genres[id];
+            movieIds.forEach(movieId => {this.genreMovieAssociationRepo.insert(
+                {genreId:genre.id,movieId});
+            });}
+        return genre;
     }
 
     delete(id){
