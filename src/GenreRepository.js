@@ -16,9 +16,11 @@ export default class GenreRepository{
         return genre;
     }
 
-    delete(id){
-        delete genres[id]
-        return genres[id];
+    async delete(genre){
+        const deletedGenre = await db.Genre.destroy({
+            where:{name:genre.name}
+        });
+        return deletedGenre;
     }
 
     update(id,options){

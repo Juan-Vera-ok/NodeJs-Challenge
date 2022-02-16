@@ -68,6 +68,11 @@ app.post('/genre',async function(req,res){
     res.json(await repoGenre.create(req.body))
 })
 
+//DELETE genres delete
+app.delete('/genre', async function(req,res){
+    res.json(await repoGenre.delete(req.body))
+})
+
 //GET genres list
 app.get('/genres',function(req,res){
     res.json(repoGenre.list())
