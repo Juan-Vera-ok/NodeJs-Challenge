@@ -28,8 +28,9 @@ export default class GenreRepository{
         return genres[id];
     }
 
-    list(){
-        return genres;
+    async list(){
+        const list = await db.Genre.findAll()
+        return list;
     }
 
     find(id){

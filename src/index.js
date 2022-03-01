@@ -74,8 +74,8 @@ app.delete('/genre', async function(req,res){
 })
 
 //GET genres list
-app.get('/genres',function(req,res){
-    res.json(repoGenre.list())
+app.get('/genres',async function(req,res){
+    res.json(await repoGenre.list())
 })
 
 //GET participation list
