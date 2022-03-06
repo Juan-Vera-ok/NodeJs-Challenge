@@ -78,6 +78,11 @@ app.get('/genres',async function(req,res){
     res.json(await repoGenre.list())
 })
 
+
+app.get('/FindOrCreateGenre',async function(req,res){
+    res.json(await repoGenre.findOrCreateByName(req.body))
+})
+
 //GET participation list
 app.get('/repoParticipation',function(req,res){
     res.json(repoParticipation.list())

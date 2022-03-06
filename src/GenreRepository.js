@@ -2,10 +2,6 @@ import GenreMovieAssociationRepository from "./GenreMovieAssociationRepository.j
 import db from "../db/models/index.cjs" 
 
 export default class GenreRepository{
-    
-    constructor(){
-        this.genreMovieAssociationRepo= new GenreMovieAssociationRepository();
-    }
 
     async create({name}){
         const genre =await db.Genre.create({name});
@@ -17,12 +13,11 @@ export default class GenreRepository{
         return arrayGenre.find(genre=> genre.name===genreName)
     }
 
-    findOrCreateByName(genreName){
-        let genre=this._findGenreByName(genreName)
-        if(genre){
-            return genre;
-        }else{
-            return this.create({name:genreName})
+    async findOrCreateByName({name}){
+    return await db.Genre.findOrCreate({
+        where: {
+            name:name
         }
+    });
     }
 }
