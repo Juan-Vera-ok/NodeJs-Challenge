@@ -5,6 +5,7 @@ import MovieParticipationRepository from './MovieParticipationRepository.js';
 import GenreMovieAssociationRepository from './GenreMovieAssociationRepository.js';
 import express from 'express';
 import bodyParser from 'body-parser';
+import db from "../db/models/index.cjs"
 
 const app = express();
 app.use(bodyParser.json());
@@ -80,6 +81,7 @@ app.get('/genres',async function(req,res){
 
 
 app.get('/FindOrCreateGenre',async function(req,res){
+    await db.Genre.sync({ force: false })
     res.json(await repoGenre.findOrCreateByName(req.body))
 })
 

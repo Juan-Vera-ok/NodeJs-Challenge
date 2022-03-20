@@ -3,22 +3,23 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Genre extends Model {
+  class MovieSerie extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      this.hasMany(models.GenreMovieAssociation) 
+      this.hasMany(models.GenreMovieAssociation,{foreignKey:"movieSerieId"})
     }
   }
-  Genre.init({
-    name: DataTypes.STRING
+  MovieSerie.init({
+    image: DataTypes.BIGINT,
+    title: DataTypes.STRING,
+    rating: DataTypes.ENUM('ATP','+13','+16','+18','C')
   }, {
     sequelize,
-    modelName: 'Genre',
-    timestamps: false
+    modelName: 'MovieSerie',
   });
-  return Genre;
+  return MovieSerie;
 };

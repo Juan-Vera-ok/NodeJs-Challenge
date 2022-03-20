@@ -1,6 +1,7 @@
 import MovieParticipationRepository from "./MovieParticipationRepository.js";
 import GenreMovieAssociationRepository from "./GenreMovieAssociationRepository.js";
 import GenreRepository from "./GenreRepository.js";
+import db from "../db/models/index.cjs" 
 
 const MovieSerie={};
 let nextId=1;
@@ -11,17 +12,14 @@ export default class MovieSerieRepository{
         this.genreMovieAssociationRepo = new GenreMovieAssociationRepository()
         this.genreRepository = new GenreRepository();
     }
-    create({characterIds,genreNames,...options}){
-        const id=nextId;
-        const newMovieSerie={...options,id};
-
-        characterIds.forEach(characterId => this.participationRepo.insert({
-            movieId:id,characterId}));
-
-        this.createGenres(id,genreNames)
-        
-        MovieSerie[id]=newMovieSerie;
-        nextId++;
+    async create({characterIds,genreNames,image,title,createdAt,rating}){
+        const newMovieSerie = await db.MovieSerie.create({image,title,createdAt,rating})
+        const promises = genreNames.map(async genreName=>{
+            const genre =await this.genreRepository.findOrCreateByName(genreName)
+            await newMovieSerie.createGenreMovieAssociation(
+            {genreId:genre.id})
+        })
+        await Promise.all(promises);
         return newMovieSerie;
     }
 

@@ -16,10 +16,16 @@ if (config.use_env_variable) {
 }
 
 fs
+//Devuelve un array con los archivos del directorio actual
   .readdirSync(__dirname)
+  /*Filtra el array para sacar los archivos ocultos '.', los archivos
+  iguales al archivo actual y para dejar los archivos que terminan .cjs*/
   .filter(file => {
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-4) === '.cjs');
   })
+  /*Por cada archivo lo requiere e invoca la función que devuelve
+  ese archivo obteniendo como resultado el modelo y por último almacena dentro
+  de la variable db el modelo usando el nombre del modelo como clave*/
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
