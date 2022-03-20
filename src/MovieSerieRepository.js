@@ -16,6 +16,7 @@ export default class MovieSerieRepository{
         const newMovieSerie = await db.MovieSerie.create({image,title,createdAt,rating})
         const promises = genreNames.map(async genreName=>{
             const genre =await this.genreRepository.findOrCreateByName(genreName)
+            console.log(genre);
             await newMovieSerie.createGenreMovieAssociation(
             {genreId:genre.id})
         })

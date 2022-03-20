@@ -4,10 +4,11 @@ import db from "../db/models/index.cjs"
 export default class GenreRepository{
 
     async findOrCreateByName(name){
-    return await db.Genre.findOrCreate({
+    const [genre]=await db.Genre.findOrCreate({
         where: {
             name
         }
     });
+    return genre;
     }
 }
